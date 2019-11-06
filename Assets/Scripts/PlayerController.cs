@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody myRigidBody;
     public float speed=50f;
+    public Text scoreText;
     int score;
 
     // Start is called before the first frame update
@@ -32,12 +34,12 @@ public class PlayerController : MonoBehaviour
         myRigidBody.AddForce(movement * speed);                                         //La velocidad del objeto. Es el movimiento base * la velocidad extra que le pongo
     }
 
-    private void OnTriggerEnter(Collider other)         //OnTriggerEnter = Cuando entra en contacto con un collider ... (Collider other) = El other es el objeto con el que choca
+    private void OnTriggerEnter(Collider other)         //OnTriggerEnter = Cuando entra en contacto con un collider ... (Collider other) = El other es el objeto con el que choca       [REFERENCIA]
     {
         if (other.gameObject.CompareTag("Pickup")) {    //Esto sirve para que comparar tags 
             other.gameObject.SetActive(false);          //Como el tag del objeto es "Pickup" entonces la linea se lleva a cabo
             score += other.gameObject.GetComponent<PickupRotation>().points;
-            Debug.Log("PUNTUACION= "+ score);
+            scoreText.text = "SCORE: " + score;
         }
     }
 }
