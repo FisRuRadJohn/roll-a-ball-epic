@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Lava : MonoBehaviour
 {
+
+    public GameObject spawn;
+
     // Start is called before the first frame update
     void Start()
     {

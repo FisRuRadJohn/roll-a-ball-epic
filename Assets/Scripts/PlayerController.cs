@@ -42,4 +42,13 @@ public class PlayerController : MonoBehaviour
             scoreText.text = "SCORE: " + score;
         }
     }
+
+    private void OnTriggerEnter(Collider other)         //OnTriggerEnter = Cuando entra en contacto con un collider ... (Collider other) = El other es el objeto con el que choca       [REFERENCIA]
+    {
+        if (other.gameObject.CompareTag("Lava"))
+        {    
+            
+            
+        }
+    }
 }
