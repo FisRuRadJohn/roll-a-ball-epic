@@ -9,13 +9,16 @@ public class PlayerController : MonoBehaviour
     public float speed = 50f;
     public Text scoreText;
     public GameObject resPosition;  //Objeto que recoge la posición del respawner. Arrastrado el respawner al player para asignarlo.
+    public int maxSpeed= 40;
     int score;
+    int secret;
 
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
         transform.position = resPosition.transform.position;
+        secret = 0;
     }
 
     // Update is called once per frame
@@ -33,7 +36,13 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(horizontalMovement, 0f, verticalMovement);       // Vector que recoge el movimiento
 
-        myRigidBody.AddForce(movement * speed);                                         //La velocidad del objeto. Es el movimiento base * la velocidad extra que le pongo
+        myRigidBody.AddForce(movement * speed);                                       //La velocidad del objeto. Es el movimiento base * la velocidad extra que le pongo
+
+        if(speed>maxSpeed)
+        {
+            speed = maxSpeed;
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)         //OnTriggerEnter = Cuando entra en contacto con un collider ... (Collider other) = El other es el objeto con el que choca       [REFERENCIA]
@@ -51,5 +60,13 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = resPosition.transform.position;
         }
+
+        if (other.gameObject.CompareTag("Secret"))
+        {
+            other.gameObject.SetActive(false);
+            secret += 1;
+        }
+
+
     }
 }

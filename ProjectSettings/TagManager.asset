@@ -7,6 +7,9 @@ TagManager:
   - Pickup
   - Lava
   - Death
+  - Secret
+  - Tp1
+  - TpSecret
   layers:
   - Default
   - TransparentFX
