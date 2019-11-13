@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public int maxSpeed= 40;
     int score;
     int secret;
+    public AudioSource bruhSound;   //AudoiSource para sonidos
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
         {    //Esto sirve para que comparar tags 
 
             other.gameObject.SetActive(false);          //Como el tag del objeto es "Pickup" entonces la linea se lleva a cabo
+            bruhSound.Play();                           //Para que reproduzca el sonido
             score += other.gameObject.GetComponent<PickupRotation>().points;
             scoreText.text = "SCORE: " + score;
         }
